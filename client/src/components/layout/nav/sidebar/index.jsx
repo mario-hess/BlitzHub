@@ -1,11 +1,15 @@
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 import styled from 'styled-components'
 
+import { setUser } from '../../../../redux/actions'
 import BurgerMenu from '../burger-menu'
 
 import * as AiIcons from 'react-icons/ai'
 import * as IoIcons from 'react-icons/io5'
+import * as FiIcons from 'react-icons/fi'
 
 const NavWrapper = styled.div`
     width: 3.5rem;
@@ -126,9 +130,51 @@ const Slickbar = styled.ul`
         width: ${(props) => (props.isNavbarToggled ? '12rem' : '3.5rem')};
     }
 `
+const LogoutButton = styled.button`
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+
+    width: 100%;
+    padding: 1rem 0;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    display: flex;
+    padding-left: 1rem;
+
+    &:hover {
+        border-right: 3px solid ${(props) => props.theme.COLORS.purple};
+    }
+
+    svg {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: auto;
+        color: ${(props) => props.theme.COLORS.purple};
+    }
+`
 
 const Sidebar = () => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const isNavbarToggled = useSelector((state) => state.isNavbarToggled)
+    const user = useSelector((state) => state.user)
+
+    const logout = async () => {
+        try {
+            await axios.get(process.env.REACT_APP_BASEURL + '/auth/logout')
+            dispatch(setUser(null))
+            history.push('/auth')
+        } catch ({ response }) {
+            console.log(response)
+        }
+    }
 
     return (
         <NavWrapper>
@@ -184,6 +230,13 @@ const Sidebar = () => {
                             </Text>
                         </Item>
                     </Link>
+                    {user ? (
+                        <LogoutButton onClick={logout}>
+                            <FiIcons.FiLogOut />
+                        </LogoutButton>
+                    ) : (
+                        ''
+                    )}
                 </Slickbar>
             </Nav>
         </NavWrapper>

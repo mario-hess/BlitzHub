@@ -1,18 +1,72 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 const Wrapper = styled.svg`
     height: 32px;
-    width: 24px;
+    width: 32px;
 `
 
 const Fire = () => {
     return (
-        <Wrapper xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 16">
-            <path
-                fill="#ff5555"
-                d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"
-            />
+        <Wrapper viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <radialGradient
+                    id="SVGID_1_"
+                    cx="68.8839"
+                    cy="124.2963"
+                    gradientTransform="matrix(-1 -4.343011e-03 -7.125917e-03 1.6408 131.9857 -79.3452)"
+                    gradientUnits="userSpaceOnUse"
+                    r="70.587"
+                >
+                    <stop offset="0.3144" stopColor="#FF9800" />
+                    <stop offset="0.6616" stopColor="#FF6D00" />
+                    <stop offset="0.9715" stopColor="#F44336" />
+                </radialGradient>
+                <path
+                    d="M35.56,40.73c-0.57,6.08-0.97,16.84,2.62,21.42c0,0-1.69-11.82,13.46-26.65 c6.1-5.97,7.51-14.09,5.38-20.18c-1.21-3.45-3.42-6.3-5.34-8.29C50.56,5.86,51.42,3.93,53.05,4c9.86,0.44,25.84,3.18,32.63,20.22 c2.98,7.48,3.2,15.21,1.78,23.07c-0.9,5.02-4.1,16.18,3.2,17.55c5.21,0.98,7.73-3.16,8.86-6.14c0.47-1.24,2.1-1.55,2.98-0.56 c8.8,10.01,9.55,21.8,7.73,31.95c-3.52,19.62-23.39,33.9-43.13,33.9c-24.66,0-44.29-14.11-49.38-39.65 c-2.05-10.31-1.01-30.71,14.89-45.11C33.79,38.15,35.72,39.11,35.56,40.73z"
+                    fill="url(#SVGID_1_)"
+                />
+                <g>
+                    <radialGradient
+                        id="SVGID_2_"
+                        cx="64.9211"
+                        cy="54.0621"
+                        gradientTransform="matrix(-0.0101 0.9999 0.7525 7.603777e-03 26.1538 -11.2668)"
+                        gradientUnits="userSpaceOnUse"
+                        r="73.8599"
+                    >
+                        <stop offset="0.2141" stopColor="#FFF176" />
+                        <stop offset="0.3275" stopColor="#FFF27D" />
+                        <stop offset="0.4868" stopColor="#FFF48F" />
+                        <stop offset="0.6722" stopColor="#FFF7AD" />
+                        <stop offset="0.7931" stopColor="#FFF9C4" />
+                        <stop
+                            offset="0.8221"
+                            stopColor="#FFF8BD"
+                            stopOpacity="0.804"
+                        />
+                        <stop
+                            offset="0.8627"
+                            stopColor="#FFF6AB"
+                            stopOpacity="0.529"
+                        />
+                        <stop
+                            offset="0.9101"
+                            stopColor="#FFF38D"
+                            stopOpacity="0.2088"
+                        />
+                        <stop
+                            offset="0.9409"
+                            stopColor="#FFF176"
+                            stopOpacity="0"
+                        />
+                    </radialGradient>
+                    <path
+                        d="M76.11,77.42c-9.09-11.7-5.02-25.05-2.79-30.37c0.3-0.7-0.5-1.36-1.13-0.93 c-3.91,2.66-11.92,8.92-15.65,17.73c-5.05,11.91-4.69,17.74-1.7,24.86c1.8,4.29-0.29,5.2-1.34,5.36 c-1.02,0.16-1.96-0.52-2.71-1.23c-2.15-2.05-3.7-4.72-4.44-7.6c-0.16-0.62-0.97-0.79-1.34-0.28c-2.8,3.87-4.25,10.08-4.32,14.47 C40.47,113,51.68,124,65.24,124c17.09,0,29.54-18.9,19.72-34.7C82.11,84.7,79.43,81.69,76.11,77.42z"
+                        fill="url(#SVGID_2_)"
+                    />
+                </g>
+            </g>
         </Wrapper>
     )
 }

@@ -14,8 +14,10 @@ import {
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import HomePage from './components/home'
+import HotPage from './components/hot'
+import TrendingPage from './components/trending'
 import AuthPage from './components/auth'
+import LikesPage from './components/likes'
 import ErrorPage from './components/error'
 import Sidebar from './components/layout/nav/sidebar'
 
@@ -74,7 +76,8 @@ const App = ({ children }) => {
                     />
                     <Sidebar />
                     <Switch>
-                        <Route path="/" component={HomePage} exact />
+                        <Route path="/" component={HotPage} exact />
+                        <Route path="/trending" component={TrendingPage} />
                         <Route path="/auth">
                             <AuthPage
                                 silentRefresh={silentRefresh}
@@ -82,6 +85,7 @@ const App = ({ children }) => {
                                 notifyError={notifyError}
                             />
                         </Route>
+                        <Route path="/likes" component={LikesPage} />
                         <Route path="/page-not-found" component={ErrorPage} />
                         <Redirect to="/page-not-found" />
                     </Switch>
