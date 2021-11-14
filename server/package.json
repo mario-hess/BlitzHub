@@ -1,0 +1,29 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "Web Server",
+    "main": "server.js",
+    "author": "Mario Hess",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^6.3.0",
+        "nodemon": "^2.0.13"
+    },
+    "scripts": {
+        "server": "nodemon server.js",
+        "client": "cd .. && cd client && yarn start --prefix client",
+        "dev": "concurrently \"yarn run server\"  \"yarn run client\""
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "chalk": "^4.1.2",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-validator": "^6.13.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.0.10"
+    },
+    "type": "module"
+}
