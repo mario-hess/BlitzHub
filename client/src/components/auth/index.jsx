@@ -28,12 +28,11 @@ const Switch = styled.p`
     cursor: pointer;
 `
 
-const AuthPage = ({ silentRefresh }) => {
+const AuthPage = ({ silentRefresh, notifySuccess, notifyError }) => {
     const [switchForm, setSwitchForm] = useState(false)
     const user = useSelector((state) => state.user)
 
-    const switchForms = (e) => {
-        e.preventDefault()
+    const switchForms = () => {
         setSwitchForm(!switchForm)
     }
 
@@ -41,9 +40,17 @@ const AuthPage = ({ silentRefresh }) => {
         return (
             <Wrapper>
                 {switchForm ? (
-                    <SignupForm />
+                    <SignupForm
+                        switchForm={switchForm}
+                        setSwitchForm={setSwitchForm}
+                        notifyError={notifyError}
+                        notifySuccess={notifySuccess}
+                    />
                 ) : (
-                    <LoginForm silentRefresh={silentRefresh} />
+                    <LoginForm
+                        silentRefresh={silentRefresh}
+                        notifyError={notifyError}
+                    />
                 )}
 
                 {switchForm ? (

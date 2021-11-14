@@ -11,6 +11,8 @@ import {
     Route,
     Redirect,
 } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import HomePage from './components/home'
 import AuthPage from './components/auth'
@@ -24,6 +26,8 @@ const Root = styled.div`
 `
 
 const App = ({ children }) => {
+    const notifyError = (message) => toast.error(message)
+    const notifySuccess = (message) => toast.success(message)
     const dispatch = useDispatch()
 
     const silentRefresh = useCallback(async () => {
@@ -64,11 +68,19 @@ const App = ({ children }) => {
             <Root>
                 <GlobalStyles />
                 <Router>
+                    <ToastContainer
+                        position="top-center"
+                        style={{ touchAction: 'none' }}
+                    />
                     <Sidebar />
                     <Switch>
                         <Route path="/" component={HomePage} exact />
                         <Route path="/auth">
-                            <AuthPage silentRefresh={silentRefresh} />
+                            <AuthPage
+                                silentRefresh={silentRefresh}
+                                notifySuccess={notifySuccess}
+                                notifyError={notifyError}
+                            />
                         </Route>
                         <Route path="/page-not-found" component={ErrorPage} />
                         <Redirect to="/page-not-found" />

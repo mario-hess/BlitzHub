@@ -9,14 +9,11 @@ import Input from '../../common/forms/Input'
 import Button from '../../common/forms/Button'
 import LoadingSpinner from '../../common/loading-spinner'
 
-const LoginForm = ({ silentRefresh }) => {
+const LoginForm = ({ silentRefresh, notifyError }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-
     const dispatch = useDispatch()
-
     const history = useHistory()
 
     const handleInputEmailChange = (event) => {
@@ -44,7 +41,8 @@ const LoginForm = ({ silentRefresh }) => {
             silentRefresh()
             history.push('/')
         } catch ({ response }) {
-            console.log(response)
+            console.log(response.data.message)
+            notifyError(response.data.message)
             setIsLoading(false)
         }
     }

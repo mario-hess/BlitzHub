@@ -4,13 +4,18 @@ import axios from 'axios'
 import Form from '../../common/forms/Form'
 import Input from '../../common/forms/Input'
 import Button from '../../common/forms/Button'
+import LoadingSpinner from '../../common/loading-spinner'
 
-const SignupForm = () => {
+const SignupForm = ({
+    switchForm,
+    setSwitchForm,
+    notifyError,
+    notifySuccess,
+}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleInputEmailChange = (event) => {
         event.preventDefault()
@@ -21,12 +26,14 @@ const SignupForm = () => {
         event.preventDefault()
         setPassword(event.target.value)
     }
+
     const handleInputConfirmPasswordChange = (event) => {
         event.preventDefault()
         setConfirmPassword(event.target.value)
     }
 
     const signup = async () => {
+        setIsLoading(true)
         try {
             const response = await axios.post(
                 process.env.REACT_APP_BASEURL + '/auth/signup',
@@ -36,14 +43,20 @@ const SignupForm = () => {
                     confirmPassword,
                 }
             )
-            console.log('User created')
+            setIsLoading(false)
+            notifySuccess(response.data.message)
+            setSwitchForm(!switchForm)
             console.log(response)
         } catch ({ response }) {
+            setIsLoading(false)
+            notifyError(response.data.message)
             console.log(response)
         }
     }
 
-    return (
+    return isLoading ? (
+        <LoadingSpinner />
+    ) : (
         <Form>
             <Input
                 id="email"
