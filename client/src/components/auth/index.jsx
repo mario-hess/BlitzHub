@@ -5,6 +5,7 @@ import styled from 'styled-components'
 
 import LoginForm from './login'
 import SignupForm from './signup'
+import ProfilePage from '../profile'
 
 const Wrapper = styled.div`
     margin: 0;
@@ -36,10 +37,6 @@ const AuthPage = ({ silentRefresh }) => {
         setSwitchForm(!switchForm)
     }
 
-    const Profile = () => {
-        return <p>Profile</p>
-    }
-
     const AuthForm = () => {
         return (
             <Wrapper>
@@ -64,7 +61,7 @@ const AuthPage = ({ silentRefresh }) => {
         )
     }
 
-    return user ? <Profile /> : <AuthForm />
+    return user ? <ProfilePage /> : <AuthForm />
 }
 
 export default AuthPage
