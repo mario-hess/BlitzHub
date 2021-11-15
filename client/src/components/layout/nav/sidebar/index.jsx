@@ -180,8 +180,8 @@ const Sidebar = ({ notify }) => {
         }
     }
 
-    const toggle = (event) => {
-        dispatch(toggleNavbar(false))
+    const toggle = () => {
+        if (isNavbarToggled) dispatch(toggleNavbar())
     }
 
     return (

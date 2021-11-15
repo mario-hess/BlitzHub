@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import Fire from '../base/icons/Fire'
+import Fire from '../base/emoji/Fire'
 
 const Wrapper = styled.div`
     width: 100vw;

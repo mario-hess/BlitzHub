@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import Heart from '../base/icons/Heart'
+import Heart from '../base/emoji/Heart'
 
 const Wrapper = styled.div`
     width: 100vw;

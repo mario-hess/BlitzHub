@@ -76,6 +76,7 @@ const App = ({ children }) => {
                 <Router>
                     <ToastContainer
                         position="top-center"
+                        autoClose={3000}
                         style={{ touchAction: 'none' }}
                     />
                     <Sidebar notify={notify} />

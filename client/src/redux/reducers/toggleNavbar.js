@@ -1,6 +1,6 @@
 const toggleNavbarReducer = (state = false, action) => {
     switch (action.type) {
-        case "TOGGLE":
+        case 'TOGGLE':
             return !state
         default:
             return state
