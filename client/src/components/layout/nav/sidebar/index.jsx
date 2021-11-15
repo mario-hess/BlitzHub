@@ -120,13 +120,14 @@ const Slickbar = styled.ul`
 
     transition: all 0.5s ease;
     width: 3.5rem;
+    border-radius: 0 0 30px 0;
 
     left: ${(props) => (props.isNavbarToggled ? '0' : '-3.5rem')};
 
     @media only screen and (min-width: ${(props) =>
             props.theme.BREAKPOINTS.medium}) {
         border-radius: ${(props) =>
-            props.isNavbarToggled ? '0 30px 30px 0' : '0 0 30px 0'};
+            props.isNavbarToggled ? '0 30px 30px 0' : ' 0 0 30px 0'};
         left: 0;
         width: ${(props) => (props.isNavbarToggled ? '12rem' : '3.5rem')};
     }
