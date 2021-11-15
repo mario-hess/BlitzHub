@@ -28,6 +28,10 @@ const Root = styled.div`
 `
 
 const App = ({ children }) => {
+    const notify = (message) =>
+        toast(message, {
+            hideProgressBar: true,
+        })
     const notifyError = (message) => toast.error(message)
     const notifySuccess = (message) => toast.success(message)
     const dispatch = useDispatch()
@@ -74,11 +78,11 @@ const App = ({ children }) => {
                         position="top-center"
                         style={{ touchAction: 'none' }}
                     />
-                    <Sidebar />
+                    <Sidebar notify={notify} />
                     <Switch>
                         <Route path="/" component={HotPage} exact />
                         <Route path="/trending" component={TrendingPage} />
-                        <Route path="/auth">
+                        <Route path="/profile">
                             <AuthPage
                                 silentRefresh={silentRefresh}
                                 notifySuccess={notifySuccess}

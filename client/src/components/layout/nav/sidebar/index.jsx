@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
+import { toggleNavbar } from '../../../../redux/actions'
 import { setUser } from '../../../../redux/actions'
 import BurgerMenu from '../burger-menu'
 
@@ -160,20 +161,26 @@ const LogoutButton = styled.button`
     }
 `
 
-const Sidebar = () => {
+const Sidebar = ({ notify }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const isNavbarToggled = useSelector((state) => state.isNavbarToggled)
     const user = useSelector((state) => state.user)
 
     const logout = async () => {
+        toggle()
         try {
             await axios.get(process.env.REACT_APP_BASEURL + '/auth/logout')
             dispatch(setUser(null))
-            history.push('/auth')
+            notify('👋 See you around!')
+            history.push('/profile')
         } catch ({ response }) {
             console.log(response)
         }
+    }
+
+    const toggle = (event) => {
+        dispatch(toggleNavbar(false))
     }
 
     return (
@@ -183,14 +190,24 @@ const Sidebar = () => {
                     <BurgerMenu />
                 </BurgerWrapper>
                 <Slickbar isNavbarToggled={isNavbarToggled}>
-                    <Link exact to="/" activeClassName="active">
+                    <Link
+                        exact
+                        to="/"
+                        activeClassName="active"
+                        onClick={toggle}
+                    >
                         <Item>
                             <AiIcons.AiOutlineFire />
                             <Text isNavbarToggled={isNavbarToggled}>Hot</Text>
                         </Item>
                     </Link>
 
-                    <Link exact to="/trending" activeClassName="active">
+                    <Link
+                        exact
+                        to="/trending"
+                        activeClassName="active"
+                        onClick={toggle}
+                    >
                         <Item>
                             <IoIcons.IoSparklesOutline />
                             <Text isNavbarToggled={isNavbarToggled}>
@@ -199,7 +216,11 @@ const Sidebar = () => {
                         </Item>
                     </Link>
 
-                    <Link to="/auth" activeClassName="active">
+                    <Link
+                        to="/profile"
+                        activeClassName="active"
+                        onClick={toggle}
+                    >
                         <Item>
                             <AiIcons.AiOutlineUser />
                             <Text isNavbarToggled={isNavbarToggled}>
@@ -207,32 +228,65 @@ const Sidebar = () => {
                             </Text>
                         </Item>
                     </Link>
+                    {user ? (
+                        <Link
+                            to="/chat"
+                            activeClassName="active"
+                            onClick={toggle}
+                        >
+                            <Item>
+                                <AiIcons.AiOutlineMail />
+                                <Text isNavbarToggled={isNavbarToggled}>
+                                    Chat
+                                </Text>
+                            </Item>
+                        </Link>
+                    ) : (
+                        ''
+                    )}
 
-                    <Link to="/chat" activeClassName="active">
-                        <Item>
-                            <AiIcons.AiOutlineMail />
-                            <Text isNavbarToggled={isNavbarToggled}>Chat</Text>
-                        </Item>
-                    </Link>
+                    {user ? (
+                        <Link
+                            to="/likes"
+                            activeClassName="active"
+                            onClick={toggle}
+                        >
+                            <Item>
+                                <AiIcons.AiOutlineHeart />
+                                <Text isNavbarToggled={isNavbarToggled}>
+                                    Likes
+                                </Text>
+                            </Item>
+                        </Link>
+                    ) : (
+                        ''
+                    )}
 
-                    <Link to="/likes" activeClassName="active">
-                        <Item>
-                            <AiIcons.AiOutlineHeart />
-                            <Text isNavbarToggled={isNavbarToggled}>Likes</Text>
-                        </Item>
-                    </Link>
+                    {user ? (
+                        <Link
+                            to="/settings"
+                            activeClassName="active"
+                            onClick={toggle}
+                        >
+                            <Item>
+                                <IoIcons.IoSettingsOutline />
+                                <Text isNavbarToggled={isNavbarToggled}>
+                                    Settings
+                                </Text>
+                            </Item>
+                        </Link>
+                    ) : (
+                        ''
+                    )}
 
-                    <Link to="/settings" activeClassName="active">
-                        <Item>
-                            <IoIcons.IoSettingsOutline />
-                            <Text isNavbarToggled={isNavbarToggled}>
-                                Settings
-                            </Text>
-                        </Item>
-                    </Link>
                     {user ? (
                         <LogoutButton onClick={logout}>
-                            <FiIcons.FiLogOut />
+                            <Item>
+                                <FiIcons.FiLogOut />
+                                <Text isNavbarToggled={isNavbarToggled}>
+                                    Logout
+                                </Text>
+                            </Item>
                         </LogoutButton>
                     ) : (
                         ''
