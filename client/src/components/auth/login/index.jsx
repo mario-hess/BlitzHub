@@ -7,12 +7,10 @@ import { setUser } from '../../../redux/actions'
 import Form from '../../common/forms/Form'
 import Input from '../../common/forms/Input'
 import Button from '../../common/forms/Button'
-import LoadingSpinner from '../../common/loading-spinner'
 
-const LoginForm = ({ silentRefresh, notifyError }) => {
+const LoginForm = ({ isLoading, setIsLoading, silentRefresh, notifyError }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -47,9 +45,7 @@ const LoginForm = ({ silentRefresh, notifyError }) => {
         }
     }
 
-    return isLoading ? (
-        <LoadingSpinner />
-    ) : (
+    return (
         <Form>
             <Input
                 id="email"

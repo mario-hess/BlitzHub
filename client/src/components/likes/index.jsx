@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import Heart from '../base/emoji/Heart'
+import HeartEffect from '../utils/Hearts'
 
 const Wrapper = styled.div`
     width: 100vw;
@@ -25,7 +25,7 @@ const LikesPage = () => {
     return (
         <Wrapper>
             <Heading>
-                Likes <Heart />
+                <HeartEffect>Liked Posts</HeartEffect>
             </Heading>
         </Wrapper>
     )

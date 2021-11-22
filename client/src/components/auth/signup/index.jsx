@@ -4,9 +4,10 @@ import axios from 'axios'
 import Form from '../../common/forms/Form'
 import Input from '../../common/forms/Input'
 import Button from '../../common/forms/Button'
-import LoadingSpinner from '../../common/loading-spinner'
 
 const SignupForm = ({
+    isLoading,
+    setIsLoading,
     switchForm,
     setSwitchForm,
     notifyError,
@@ -15,7 +16,6 @@ const SignupForm = ({
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
 
     const handleInputEmailChange = (event) => {
         event.preventDefault()
@@ -54,9 +54,7 @@ const SignupForm = ({
         }
     }
 
-    return isLoading ? (
-        <LoadingSpinner />
-    ) : (
+    return (
         <Form>
             <Input
                 id="email"

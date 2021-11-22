@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken"
-import User from "../../models/user.js"
+import jwt from 'jsonwebtoken'
+import User from '../../models/user.js'
 
 // @route         GET auth/refresh-token
 // @desc          refresh JWT
@@ -9,7 +9,7 @@ const refreshToken = async (req, res, next) => {
         const token = req.cookies.refreshToken
 
         if (!token) {
-            const error = new Error("No token sent, authorization denied")
+            const error = new Error('No token sent, authorization denied')
             error.statusCode = 401
             throw error
         }
@@ -25,10 +25,10 @@ const refreshToken = async (req, res, next) => {
 
         const loadedUser = await User.findOne({
             email: decoded.user.email,
-        }).select("-password")
+        }).select('-password')
 
         if (!loadedUser) {
-            const error = new Error("A user with this email could not be found")
+            const error = new Error('A user with this email could not be found')
             error.statusCode = 401
             throw error
         }
@@ -39,7 +39,7 @@ const refreshToken = async (req, res, next) => {
             { expiresIn: 60 }, //1m
             (error, token) => {
                 if (error) {
-                    const error = new Error("Error signing authorization token")
+                    const error = new Error('Error signing authorization token')
                     error.statusCode = 401
                     throw error
                 }
