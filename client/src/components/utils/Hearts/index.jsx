@@ -38,7 +38,7 @@ const generateHeart = (color) => {
 
 const Hearts = ({ color = COLORS.red, children }) => {
     const [hearts, setHearts] = useState(() => {
-        return range(3).map(() => generateHeart(color))
+        return range(1).map(() => generateHeart(color))
     })
 
     useRandomInterval(
